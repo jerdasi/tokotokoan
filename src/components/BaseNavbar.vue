@@ -13,9 +13,10 @@
       <li>Profil</li>
     </ul>
 
-    <ul class="navbar__container flex justify-end gap-4 md:w-1/6">
-      <li>Product</li>
-      <li>Profil</li>
+    <ul class="navbar__container hidden md:flex justify-end gap-4 md:w-1/6">
+      <li class="p-2 hover:text-[#03AC0E] rounded text-xl cursor-pointer">Product</li>
+      <li class="p-2 hover:text-[#03AC0E] rounded text-xl cursor-pointer"><font-awesome-icon icon="cart-shopping" size="lg" /></li>
+      <li class="p-2 hover:text-[#03AC0E] rounded text-xl cursor-pointer">Profil</li>
     </ul>
   </nav>
 </template>

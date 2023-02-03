@@ -4,8 +4,14 @@ import BaseNavbar from "@/components/BaseNavbar.vue";
 </script>
 
 <template>
-  <BaseNavbar />
-  <router-view />
+  <v-app>
+
+  </v-app>
+  <div id="app">
+
+
+    <router-view></router-view>
+  </div>
 </template>
 
 <style scoped>
