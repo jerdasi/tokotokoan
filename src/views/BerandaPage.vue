@@ -50,15 +50,20 @@
 <script>
 import banner1 from "@/assets/banner1.webp";
 import BaseCardProduct from "@/components/BaseCardProduct.vue";
+import ProductApi from "@/api/ProductApi.js";
 
 export default {
   name: "BerandaPage.vue",
   components: {
     BaseCardProduct
   },
+  async mounted() {
+    await this.getAllProducts()
+  },
   data() {
     return {
-      banner1: banner1
+      banner1: banner1,
+      products: []
     }
   },
   methods: {
@@ -66,6 +71,10 @@ export default {
       this.$router.push({
         path: '/product'
       })
+    },
+    getAllProducts: async function () {
+      const responseData = await ProductApi.getAllProduct();
+      console.log(responseData)
     }
   }
 }

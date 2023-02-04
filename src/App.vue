@@ -1,6 +1,4 @@
 <script setup>
-// import HelloWorld from './components/HelloWorld.vue'
-import BaseNavbar from "@/components/BaseNavbar.vue";
 </script>
 
 <template>

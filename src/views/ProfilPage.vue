@@ -16,23 +16,23 @@
           </div>
 
           <div class="form--field">
-            <label for="username">Username</label>
-            <input type="text" id="username" class="w-full border p-2 rounded-lg" v-model="username">
+            <label for="username">Email</label>
+            <input type="text" id="username" class="w-full border p-2 rounded-lg" v-model="email">
           </div>
 
           <div class="form--field">
             <label for="password">Jenis Kelamin</label>
             <div class="form--field__input">
-              <input type="radio" name="jenis-kelamin" id="" class="mr-1" v-model="jenisKelamin" :value="0">Laki-Laki
+              <input type="radio" name="jenis-kelamin" id="" class="mr-1" v-model="jenisKelamin" value="L">Laki-Laki
             </div>
             <div class="form--field__input">
-              <input type="radio" name="jenis-kelamin" id="" class="mr-1" v-model="jenisKelamin" :value="1">Perempuan
+              <input type="radio" name="jenis-kelamin" id="" class="mr-1" v-model="jenisKelamin" value="P">Perempuan
             </div>
           </div>
           
           <div class="form--field">
             <label for="deskripsi">Bio Singkat</label>
-            <textarea name="" id="" cols="30" rows="10" class="border rounded-lg w-full p-2"></textarea>
+            <textarea name="" id="" cols="30" rows="10" class="border rounded-lg w-full p-2" v-model="bio"></textarea>
           </div>
 
           <div class="form--action flex flex-col gap-2 mt-2" v-if="showSubmitButton">
@@ -47,16 +47,37 @@
 <script>
 import profile from "@/assets/profil.webp"
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import AuthenticateApi from "@/api/AuthenticateApi.js";
 export default {
   name: "ProfilPage",
   components: {FontAwesomeIcon},
   data() {
     return {
       profile: profile,
-      username: "",
+      email: "",
       namaLengkap: "",
       jenisKelamin: 0,
-      showSubmitButton: false
+      showSubmitButton: false,
+      bio: ""
+    }
+  },
+  async mounted() {
+    await this.getProfile()
+  },
+  methods: {
+    getProfile: async function() {
+      try {
+        const profile = JSON.parse(localStorage.getItem('profile'));
+        const responseProfileData = await AuthenticateApi.getProfil(profile.email);
+
+        const profileData = responseProfileData.data.data.user;
+        this.namaLengkap = profileData.profil.full_name || "";
+        this.email = profileData.email;
+        this.jenisKelamin = profileData.profil.gender;
+        this.bio = profileData.profil.description;
+      } catch (err) {
+        console.log(err)
+      }
     }
   }
 }

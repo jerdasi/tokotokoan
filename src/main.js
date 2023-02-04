@@ -13,7 +13,9 @@ import {
     faTrash
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import { createPinia } from "pinia";
 
 library.add(faPhone, faBars, faCartShopping, faEye, faArrowCircleRight, faPenToSquare, faPlus, faTrash);
+const pinia = createPinia();
 
-createApp(App).use(router).component("font-awesome-icon", FontAwesomeIcon).mount('#app')
+createApp(App).use(router).use(pinia).component("font-awesome-icon", FontAwesomeIcon).mount('#app')
