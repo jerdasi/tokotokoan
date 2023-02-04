@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import BaseNavbar from "@/App.vue";
+import BaseNavbar from "@/components/BaseNavbar.vue";
 export default {
   name: "BasePageLayout",
   components: {BaseNavbar}

@@ -20,7 +20,7 @@
         <button class="rounded-full">
           <font-awesome-icon class="text-white" icon="cart-shopping" size="4x"></font-awesome-icon>
         </button>
-        <button class="bg-[#03AC0E] rounded px-4 py-2 text-white absolute bottom-0 right-0"><font-awesome-icon icon="eye" class="mr-1" />Detail</button>
+        <button class="bg-[#03AC0E] rounded px-4 py-2 text-white absolute bottom-0 right-0" @click="goToProductDetail"><font-awesome-icon icon="eye" class="mr-1" />Detail</button>
       </div>
     </div>
   </div>
@@ -52,6 +52,16 @@ export default {
   data() {
     return {
       imageTest: ProductDummy
+    }
+  },
+  methods: {
+    goToProductDetail: function () {
+      this.$router.push({
+        name: "Detail Product Page",
+        params: {
+          id: 1
+        }
+      })
     }
   }
 }
